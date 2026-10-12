@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kesikli Matematik Motoru</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="bar">
+            <a href="#" class="system-btn" onclick="minimize_window()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 16 16">
+                    <path d="M1 10L1 6L15 6V10L1 10Z"></path>
+                </svg>
+            </a>
+
+            <a href="#" class="system-btn close-btn" onclick="close_window()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 50 50">
+                    <path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path>
+                </svg>
+            </a>
+        </div>
+
+        <div style="padding: 20px;">
+            <h2>Kesikli Matematik - Kompleks Önerme Motoru</h2>
+            
+            <!-- Değerler Kümesi Tanımlama Alanı -->
+            <fieldset style="border: 2px solid aqua; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
+                <legend style="padding: 0 5px; font-weight: bold;">Önerme Değerleri Kümesi</legend>
+                <div id="kumelerAlani" style="margin-bottom: 10px;">
+                    <div style="margin-bottom: 8px;">
+                        <input type="text" class="kume-anahtar" value="p" placeholder="p" style="border: 1px solid aqua; padding: 4px; width: 60px; text-align: center; background: #000; color: aqua;" oninput="comboboxlariGuncelle()"> = 
+                        <select class="kume-deger" style="border: 1px solid aqua; padding: 4px; background: #000; color: aqua;">
+                            <option value="true">Doğru (True)</option>
+                            <option value="false">Yanlış (False)</option>
+                        </select>
+                        <button type="button" class="neon-btn" style="width: 50px; height: 30px; border-radius: 4px; font-size: 12px;" onclick="kumeSatirSil(this)">Sil</button>
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <input type="text" class="kume-anahtar" value="q" placeholder="q" style="border: 1px solid aqua; padding: 4px; width: 60px; text-align: center; background: #000; color: aqua;" oninput="comboboxlariGuncelle()"> = 
+                        <select class="kume-deger" style="border: 1px solid aqua; padding: 4px; background: #000; color: aqua;">
+                            <option value="true">Doğru (True)</option>
+                            <option value="false" selected>Yanlış (False)</option>
+                        </select>
+                        <button type="button" class="neon-btn" style="width: 50px; height: 30px; border-radius: 4px; font-size: 12px;" onclick="kumeSatirSil(this)">Sil</button>
+                    </div>
+                </div>
+                <button type="button" class="neon-btn" style="width: 140px; height: 35px; border-radius: 6px; font-size: 13px;" onclick="kumeSatirEkle()">Değişken Ekle</button>
+            </fieldset>
+
+            <!-- Kompleks Önerme Tablosu -->
+            <table border="1" id="mathTable" style="border-collapse: collapse; border-color: aqua; width: 100%; margin-bottom: 15px; text-align: center;">
+                <thead>
+                    <tr style="height: 35px;">
+                        <th>1. Bileşen</th>
+                        <th>Bağlaç</th>
+                        <th>2. Bileşen</th>
+                        <th>Hesapla</th>
+                        <th>Çıktı</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="height: 40px;">
+                        <td>
+                            <select class="ifade-select-1" style="border: 1px solid aqua; padding: 4px; background: #000; color: aqua; width: 110px;"></select>
+                        </td>
+                        <td>
+                            <select class="op-select" style="border: 1px solid aqua; padding: 4px; background: #000; color: aqua;">
+                                <option value="AND">Ve (∧)</option>
+                                <option value="OR">Veya (∨)</option>
+                                <option value="XOR">Özel Veya (⊻)</option>
+                                <option value="IMPLIES">İse (⇒)</option>
+                                <option value="BICONDITIONAL">Ancak ve Ancak (⇔)</option>
+                                <option value="NAND">Nand (⊼)</option>
+                                <option value="NOR">Nor (⊽)</option>
+                                <option value="XNOR">Xnor (⇔ Değil)</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="ifade-select-2" style="border: 1px solid aqua; padding: 4px; background: #000; color: aqua; width: 110px;"></select>
+                        </td>
+                        <td>
+                            <button type="button" class="neon-btn" style="width: 70px; height: 30px; border-radius: 4px; font-size: 12px;" onclick="satirHesapla(this)">Hesapla</button>
+                        </td>
+                        <td>
+                            <span class="cikti-alani" style="font-weight: bold; text-shadow: 0 0 8px aqua; color: aqua;">-</span>
+                        </td>
+                        <td>
+                            <button type="button" class="neon-btn" style="width: 50px; height: 30px; border-radius: 4px; font-size: 12px;" onclick="ifadeSatirSil(this)">Sil</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="margin-bottom: 20px;">
+                <button type="button" class="neon-btn" style="width: 140px; height: 35px; border-radius: 6px; font-size: 13px;" onclick="ifadeSatirEkle()">İfade Satırı Ekle</button>
+            </div>
+        </div>
+
+        <script src="main.js" type="text/javascript"></script>
+    </body>
+</html>

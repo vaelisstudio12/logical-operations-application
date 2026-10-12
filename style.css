@@ -1,0 +1,75 @@
+* {
+    background-color: #000000;
+    color:aqua
+}
+
+.system-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: 2px solid aqua;
+    color: aqua; 
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.system-btn:hover {
+    transition: all 0.2s ease;
+    color: #000000;
+    background: aqua;
+    box-shadow: 0 0 5px aqua, 0 0 25px aqua, 0 0 50px aqua;
+}
+.bar {
+    margin: 0 10px;
+    justify-content: flex-end;
+    display: flex;
+}
+
+.neon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 40px;
+    border: 2px solid aqua;
+    color:aqua; 
+    text-decoration: none;
+    border-radius: 15px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.neon-btn:hover {
+    transition: all 0.2s ease;
+    color:  #000000;
+    background: aqua;
+    box-shadow: 0 0 5px aqua, 0 0 15px aqua, 0 0 50px aqua;
+}
+
+.system-btn svg {
+    background-color: transparent; 
+    fill: aqua;
+    transition: all 0.2s ease;
+}
+
+.system-btn:hover svg {
+    fill: #000;
+    background-color: transparent;
+    transition: all 0.2s ease;
+}
+
+.neon-btn svg {
+    background-color: transparent; 
+    fill: aqua;
+    transition: all 0.2s ease;
+}
+
+.neon-btn:hover svg {
+    fill: #000;
+    background-color: transparent;
+    transition: all 0.2s ease;
+}
